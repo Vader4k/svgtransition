@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌀 SVG Transitions - Next.js Page Router
 
-## Getting Started
+A premium page transition system for Next.js 15+ applications, featuring fluid SVG path animations powered by GSAP and `next-transition-router`.
 
-First, run the development server:
+![Banner](./public/banner.png)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## ✨ Features
+- **Fluid SVG Morphing**: High-performance SVG path animations using GSAP's `DrawSVGPlugin`.
+- **Seamless Routing**: Integrated with `next-transition-router` for smooth leave/enter transitions.
+- **Next.js 15+ Ready**: Built with the latest Next.js App Router for optimal performance.
+- **Tailwind CSS 4+**: Modern styling with the latest Tailwind CSS features.
+- **GSAP Powered**: Industry-standard animation library for buttery smooth interactions.
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 18+
+- npm / yarn / pnpm
+
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Vader4k/svgtransition.git
+   cd svgtransition
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+## 🛠️ Tech Stack
+- **Framework**: [Next.js](https://nextjs.org/) (App Router)
+- **Animation**: [GSAP](https://gsap.com/) & [@gsap/react](https://gsap.com/docs/v3/React)
+- **Routing**: [next-transition-router](https://github.com/ivandotv/next-transition-router)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+
+## 📖 How It Works
+
+The transition is handled by the `TransitionWrapper` component located in `features/page-transition`. It wraps the entire application in `app/layout.tsx`.
+
+### The Core Logic
+The `TransitionWrapper` utilizes `TransitionRouter` to define `leave` and `enter` animations:
+- **Leave**: The SVG path draws in, covering the screen with a fluid blue stroke.
+- **Enter**: The SVG path draws out, revealing the next page with a smooth opacity fade.
+
+```tsx
+// Example Snippet from TransitionWrapper.tsx
+tl.to(svgPathRef.current, {
+  drawSVG: "100%",
+  strokeWidth: 300,
+  duration: 1,
+  ease: "power2.inOut"
+})
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎨 Customizing the SVG
+You can modify the transition path by editing the `d` attribute in `features/page-transition/components/TransitionWrapper.tsx`. The current path is a custom-designed squiggle that spans the viewport.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
+Built with ❤️ for fluid web experiences.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
